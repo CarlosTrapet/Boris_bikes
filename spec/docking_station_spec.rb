@@ -46,13 +46,23 @@ describe DockingStation do # syntax for testing class instance - accepts class n
     #(subject.capacity).should eq (20)   ==> is apparently deprecated
   end
 
-  it 'allows to set customised capacity' do 
-
-    station = DockingStation.new(50)
-    expect(station.capacity).to(eq(50))
+  describe 'initialization' do
     
-    # expect(subject.capacity = (50)).to(eq(50))
+    it 'allows to set customised capacity' do 
+      station = DockingStation.new(50)
+      expect(station.capacity).to(eq(50))
+      # expect(subject.capacity = (50)).to(eq(50))
+    end
+
+    it 'raises an error when customised capacity is reached' do
+      station = DockingStation.new(50)
+      subject.capacity.times {subject.dock(Bike.new)}
+      expect{subject.dock(Bike.new)}.to raise_error 'Capacity full'
+    end
+
   end
+
+
 
 end
 
