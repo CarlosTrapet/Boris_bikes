@@ -1,9 +1,11 @@
 class DockingStation
 
  # def initialize(bike, quantity)
- #  @bike = bike
- #  @quantity = quantity
- #  end
+ # @bike = bike
+ # @quantity = quantity
+ # end
+
+ # try initializing it????
 
   attr_reader :bike
 
@@ -23,15 +25,10 @@ class DockingStation
   end
 
   def dock(bike)
-
+    
+    fail 'Capacity full' if @bike
     @bike = bike
-
-
   end
-
 end
-
-
-
 
 
