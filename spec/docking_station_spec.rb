@@ -34,9 +34,7 @@ describe DockingStation do # syntax for testing class instance - accepts class n
     # expect(subject.dock(bike)).to eq bike
  
     it 'raises an error when the docking station is full' do 
-      
-      
-      20.times {subject.dock(Bike.new)} 
+      DockingStation::DEFAULT_CAPACITY.times {subject.dock(Bike.new)} 
       expect {subject.dock(Bike.new)}.to raise_error 'Capacity full'
     end
   end
