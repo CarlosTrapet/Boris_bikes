@@ -1,13 +1,13 @@
+require_relative 'bike'
+
 class DockingStation
 
- # def initialize(bike, quantity)
- # @bike = bike
- # @quantity = quantity
- # end
+def initialize
+ @bikes = []
+end
 
- # try initializing it????
+  attr_reader :bikes
 
-  attr_reader :bike
 
   #same as
   # def bike=(value)
@@ -20,14 +20,14 @@ class DockingStation
   # end
 
   def release_bike
-    fail 'No bikes available' unless @bike
-    @bike
+    fail 'No bikes available' if @bikes.empty?
+    @bikes.pop
+    return @bikes
   end
 
   def dock(bike)
-    
-    fail 'Capacity full' if @bike
-    @bike = bike
+    fail 'Capacity full' if @bikes.count >= 20
+    @bikes << bike
   end
 end
 

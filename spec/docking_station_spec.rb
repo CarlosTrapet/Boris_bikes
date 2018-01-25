@@ -1,5 +1,5 @@
 require 'docking_station'
-
+require 'bike'
 # # With RSpec, we are always describing the behavior of classes,
 # # modules and their methods. The describe block is always used at the top to
 # # put specs in a context. It can accept either a class name, in which case the
@@ -15,13 +15,13 @@ describe DockingStation do # syntax for testing class instance - accepts class n
   end
 
   it {is_expected.to respond_to(:dock).with(1).argument}
-  it {is_expected.to respond_to(:bike)}
+  it {is_expected.to respond_to(:bikes)}
 
   describe '#release_bike' do 
     it 'releases a bike' do 
       bike = Bike.new
       subject.dock(bike)
-      expect(subject.release_bike).to eq bike
+      expect(subject.release_bike).to match_array([])
     end
     it 'raises an error when there are no bikes available' do
       expect { subject.release_bike }.to raise_error 'No bikes available'
@@ -35,10 +35,9 @@ describe DockingStation do # syntax for testing class instance - accepts class n
  
     it 'raises an error when the docking station is full' do 
       
-      bike = Bike.new
-      bike2 = Bike.new
-      subject.dock(bike2)
-      expect {subject.dock(bike)}.to raise_error 'Capacity full'
+      
+      20.times {subject.dock(Bike.new)} 
+      expect {subject.dock(Bike.new)}.to raise_error 'Capacity full'
     end
   end
 end
