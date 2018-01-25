@@ -34,10 +34,26 @@ describe DockingStation do # syntax for testing class instance - accepts class n
     # expect(subject.dock(bike)).to eq bike
  
     it 'raises an error when the docking station is full' do 
-      DockingStation::DEFAULT_CAPACITY.times {subject.dock(Bike.new)} 
+      subject.capacity.times {subject.dock(Bike.new)} 
       expect {subject.dock(Bike.new)}.to raise_error 'Capacity full'
     end
   end
+
+  it 'has a default capacity' do
+    expect(subject.capacity).to(equal(20))
+
+    # careful with spacing!!! // expect (subject.capacity).to eq 20 // does not work!!!
+    #(subject.capacity).should eq (20)   ==> is apparently deprecated
+  end
+
+  it 'allows to set customised capacity' do 
+
+    station = DockingStation.new(50)
+    expect(station.capacity).to(eq(50))
+    
+    # expect(subject.capacity = (50)).to(eq(50))
+  end
+
 end
 
 
