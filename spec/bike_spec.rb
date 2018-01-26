@@ -7,11 +7,4 @@ describe Bike do
     expect(bike.working?).to eq false
   end
 
-
-  # describe '#initialize' do  
-  #   it 'allows to set state' do 
-  #     broken_bike = Bike.new("broken")
-  #     expect(broken_bike.state).to eq "broken"
-  #   end
-  # end
 end
