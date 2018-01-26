@@ -23,9 +23,27 @@ end
 
   def release_bike
     fail 'No bikes available' if empty?
-    @bikes.pop
-    return @bikes
+    new_bikes = @bikes
+    @bikes.each_with_index do |value, index|
+      if value.working? # broken? == false
+        new_bikes = @bikes.pop(index)
+        break
+      end
+    end
+    raise 'No working bikes available' if new_bikes == @bikes
+    return new_bikes
   end
+
+  # try looping through elements of array with a counter
+  # break at counter >= array.count
+
+
+
+
+
+
+
+
 
   def dock(bike)
     fail 'Capacity full' if full?
